@@ -50,7 +50,7 @@
             },
             "NUnit": {
               "target": "Package",
-              "version": "[4.2.2, )"
+              "version": "[4.3.2, )"
             },
             "NUnit.Analyzers": {
               "target": "Package",
@@ -58,7 +58,27 @@
             },
             "NUnit3TestAdapter": {
               "target": "Package",
-              "version": "[4.6.0, )"
+              "version": "[5.0.0, )"
+            },
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[4.30.0, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.30.0, )"
+            },
+            "Selenium.WebDriver.ChromeDriver": {
+              "target": "Package",
+              "version": "[134.0.6998.16500, )"
+            },
+            "Selenium.WebDriver.GeckoDriver": {
+              "target": "Package",
+              "version": "[0.36.0, )"
+            },
+            "WebDriverManager": {
+              "target": "Package",
+              "version": "[2.17.5, )"
             },
             "coverlet.collector": {
               "target": "Package",

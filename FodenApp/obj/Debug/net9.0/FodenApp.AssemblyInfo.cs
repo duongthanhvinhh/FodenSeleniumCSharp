@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FodenApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+438b5d5f5d610bd7e6f7d3baf627b3c40cd61127")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9a7db2cf7d6878875a0ad37565e4ad76c109da1")]
 [assembly: System.Reflection.AssemblyProductAttribute("FodenApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FodenApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

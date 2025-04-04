@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "FodenApp/1.0.0": {
         "dependencies": {
+          "DotNetSeleniumExtras.PageObjects.Core": "4.14.1",
           "DotNetSeleniumExtras.WaitHelpers": "3.11.0",
           "Microsoft.NET.Test.Sdk": "17.12.0",
           "NUnit": "4.3.2",
@@ -17,6 +18,7 @@
           "Selenium.WebDriver": "4.30.0",
           "Selenium.WebDriver.ChromeDriver": "134.0.6998.16500",
           "Selenium.WebDriver.GeckoDriver": "0.36.0",
+          "System.Configuration.ConfigurationManager": "9.0.3",
           "WebDriverManager": "2.17.5",
           "coverlet.collector": "6.0.2"
         },
@@ -36,6 +38,17 @@
         }
       },
       "coverlet.collector/6.0.2": {},
+      "DotNetSeleniumExtras.PageObjects.Core/4.14.1": {
+        "dependencies": {
+          "Selenium.WebDriver": "4.30.0"
+        },
+        "runtime": {
+          "lib/net6.0/SeleniumExtras.PageObjects.dll": {
+            "assemblyVersion": "4.14.1.0",
+            "fileVersion": "4.14.1.0"
+          }
+        }
+      },
       "DotNetSeleniumExtras.WaitHelpers/3.11.0": {
         "dependencies": {
           "Selenium.WebDriver": "4.30.0"
@@ -602,12 +615,54 @@
           }
         }
       },
+      "System.Configuration.ConfigurationManager/9.0.3": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "9.0.3",
+          "System.Security.Cryptography.ProtectedData": "9.0.3"
+        },
+        "runtime": {
+          "lib/net9.0/System.Configuration.ConfigurationManager.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.325.11113"
+          }
+        }
+      },
       "System.Diagnostics.DiagnosticSource/5.0.0": {},
+      "System.Diagnostics.EventLog/9.0.3": {
+        "runtime": {
+          "lib/net9.0/System.Diagnostics.EventLog.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.325.11113"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net9.0/System.Diagnostics.EventLog.Messages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.325.11113"
+          },
+          "runtimes/win/lib/net9.0/System.Diagnostics.EventLog.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.325.11113"
+          }
+        }
+      },
       "System.Reflection.Metadata/1.6.0": {},
       "System.Security.AccessControl/5.0.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "5.0.0",
           "System.Security.Principal.Windows": "5.0.0"
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/9.0.3": {
+        "runtime": {
+          "lib/net9.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.325.11113"
+          }
         }
       },
       "System.Security.Principal.Windows/5.0.0": {},
@@ -647,6 +702,13 @@
       "sha512": "sha512-bJShQ6uWRTQ100ZeyiMqcFlhP7WJ+bCuabUs885dJiBEzMsJMSFr7BOyeCw4rgvQokteGi5rKQTlkhfQPUXg2A==",
       "path": "coverlet.collector/6.0.2",
       "hashPath": "coverlet.collector.6.0.2.nupkg.sha512"
+    },
+    "DotNetSeleniumExtras.PageObjects.Core/4.14.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LwKjGyJKwaGO0pmPaWx0kOtJoDiKKYMpundXF3AwqqBcOI86gumvUpjqq/giL8zatUXdecL89wb0U/KZh03p7g==",
+      "path": "dotnetseleniumextras.pageobjects.core/4.14.1",
+      "hashPath": "dotnetseleniumextras.pageobjects.core.4.14.1.nupkg.sha512"
     },
     "DotNetSeleniumExtras.WaitHelpers/3.11.0": {
       "type": "package",
@@ -802,12 +864,26 @@
       "path": "sharpziplib/1.4.2",
       "hashPath": "sharpziplib.1.4.2.nupkg.sha512"
     },
+    "System.Configuration.ConfigurationManager/9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0kw80ykL/iFhNtFbPpjxIavmCk7/l6MqQwNSNhEoSNuI9C82ZZ251thzQZ/btHut21Y2G9M+amQY1K5bhaAjKg==",
+      "path": "system.configuration.configurationmanager/9.0.3",
+      "hashPath": "system.configuration.configurationmanager.9.0.3.nupkg.sha512"
+    },
     "System.Diagnostics.DiagnosticSource/5.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-tCQTzPsGZh/A9LhhA6zrqCRV4hOHsK90/G7q3Khxmn6tnB1PuNU0cRaKANP2AWcF9bn0zsuOoZOSrHuJk6oNBA==",
       "path": "system.diagnostics.diagnosticsource/5.0.0",
       "hashPath": "system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0nDJBZ06DVdTG2vvCZ4XjazLVaFawdT0pnji23ISX8I8fEOlRJyzH2I0kWiAbCtFwry2Zir4qE4l/GStLATfFw==",
+      "path": "system.diagnostics.eventlog/9.0.3",
+      "hashPath": "system.diagnostics.eventlog.9.0.3.nupkg.sha512"
     },
     "System.Reflection.Metadata/1.6.0": {
       "type": "package",
@@ -822,6 +898,13 @@
       "sha512": "sha512-dagJ1mHZO3Ani8GH0PHpPEe/oYO+rVdbQjvjJkBRNQkX4t0r1iaeGn8+/ybkSLEan3/slM0t59SVdHzuHf2jmw==",
       "path": "system.security.accesscontrol/5.0.0",
       "hashPath": "system.security.accesscontrol.5.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/9.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4PAwR9l3rhAESfymptisnO2KWpHmiTnKxovnREqmiY4BEakXD2ahQU4/NO0vzEarMw8RGzwpmWoiHwvL/waHfQ==",
+      "path": "system.security.cryptography.protecteddata/9.0.3",
+      "hashPath": "system.security.cryptography.protecteddata.9.0.3.nupkg.sha512"
     },
     "System.Security.Principal.Windows/5.0.0": {
       "type": "package",

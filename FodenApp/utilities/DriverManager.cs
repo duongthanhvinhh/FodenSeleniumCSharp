@@ -1,16 +1,22 @@
 using System;
+using System.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using WebDriverManager.DriverConfigs.Impl;
 
 namespace FodenApp.utilities
 {
-    public class Base
+    public class DriverManager
     {
 
-        public IWebDriver driver;
+        private static IWebDriver driver;
+
+        public static IWebDriver getDriver(){
+            return driver;
+        }
 
         public void InitBrowser(String browser)
         {
@@ -24,6 +30,10 @@ namespace FodenApp.utilities
                     new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
                     driver = new FirefoxDriver();
                     break;
+                case "Edge":
+                    new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
+                    driver = new EdgeDriver();
+                    break;
                 default:
                     new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
                     driver = new ChromeDriver();
@@ -32,10 +42,12 @@ namespace FodenApp.utilities
         }
 
         [SetUp]
-        public void StartBrowser(String browser)
+        public void StartBrowser()
         {
             TestContext.Progress.WriteLine("SetupTestContext");
-            InitBrowser(browser);
+            // String browser = ConfigurationManager.AppSettings.Get("browser");
+            String browserName = ConfigurationManager.AppSettings["browser"];
+            InitBrowser(browserName);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");

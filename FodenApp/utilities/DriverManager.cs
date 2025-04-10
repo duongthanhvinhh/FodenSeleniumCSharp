@@ -12,10 +12,12 @@ namespace FodenApp.utilities
     public class DriverManager
     {
 
-        private static IWebDriver driver;
-
-        public static IWebDriver getDriver(){
-            return driver;
+        // private static IWebDriver driver;
+        private static ThreadLocal<IWebDriver> driver = new ThreadLocal<IWebDriver>();
+        String browserName;
+        public static IWebDriver getDriver()
+        {
+            return driver.Value;
         }
 
         public void InitBrowser(String browser)
@@ -24,19 +26,19 @@ namespace FodenApp.utilities
             {
                 case "Chrome":
                     new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
-                    driver = new ChromeDriver();
+                    driver.Value = new ChromeDriver();
                     break;
                 case "Firefox":
                     new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
-                    driver = new FirefoxDriver();
+                    driver.Value = new FirefoxDriver();
                     break;
                 case "Edge":
                     new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
-                    driver = new EdgeDriver();
+                    driver.Value = new EdgeDriver();
                     break;
                 default:
                     new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
-                    driver = new ChromeDriver();
+                    driver.Value = new ChromeDriver();
                     break;
             }
         }
@@ -46,11 +48,15 @@ namespace FodenApp.utilities
         {
             TestContext.Progress.WriteLine("SetupTestContext");
             // String browser = ConfigurationManager.AppSettings.Get("browser");
-            String browserName = ConfigurationManager.AppSettings["browser"];
+            browserName = TestContext.Parameters["browserName"]; //To get the value passed from command line (run time)
+            if (browserName == null) //If no value is passed during entering the command to run, get the default value from App.config file
+            {
+                browserName = ConfigurationManager.AppSettings["browser"];
+            }
             InitBrowser(browserName);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+            driver.Value.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            driver.Value.Manage().Window.Maximize();
+            driver.Value.Navigate().GoToUrl("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
             // wait.Until(d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"));
         }
 
@@ -58,7 +64,16 @@ namespace FodenApp.utilities
         public void TearDownBrowser()
         {
             Console.WriteLine("TearDownConsole");
-            driver.Quit();
+            driver.Value.Quit();
+        }
+
+        [OneTimeTearDown]
+        public void DisposeDriver()
+        {
+            if (driver.IsValueCreated)
+            {
+                driver.Value.Dispose();
+            }
             driver.Dispose();
         }
 

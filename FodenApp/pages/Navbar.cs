@@ -1,4 +1,5 @@
 using FodenApp.enums;
+using FodenApp.utilities;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
@@ -14,53 +15,30 @@ namespace FodenApp.pages
             PageFactory.InitElements(driver, this);
         }
 
-        [FindsBy(How = How.XPath, Using = "//span[text()='Admin']")]
-        private IWebElement adminOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='PIM']")]
-        private IWebElement PIMOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='Leave']")]
-        private IWebElement leaveOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='Time']")]
-        private IWebElement timeOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='Recruitment']")]
-        private IWebElement recruitmentOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='My Info']")]
-        private IWebElement myInfoOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='Performance']")]
-        private IWebElement performanceOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='Dashboard']")]
-        private IWebElement dashboardOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='Directory']")]
-        private IWebElement directoryOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='Maintenance']")]
-        private IWebElement maintenanceOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='Claim']")]
-        private IWebElement claimOption;
-
-        [FindsBy(How = How.XPath, Using = "//span[text()='Buzz']")]
-        private IWebElement buzzOption;
+        private By adminOption = By.XPath("//span[text()='Admin']");
+        private By PIMOption = By.XPath("//span[text()='PIM']");
+        private By leaveOption = By.XPath("//span[text()='Leave']");
+        private By timeOption = By.XPath("//span[text()='Time']");
+        private By recruitmentOption = By.XPath("//span[text()='Recruitment']");
+        private By myInfoOption = By.XPath("//span[text()='My Info']");
+        private By performanceOption = By.XPath("//span[text()='Performance']");
+        private By dashboardOption = By.XPath("//span[text()='Dashboard']");
+        private By directoryOption = By.XPath("//span[text()='Directory']");
+        private By maintenanceOption = By.XPath("//span[text()='Maintenance']");
+        private By claimOption = By.XPath("//span[text()='Claim']");
+        private By buzzOption = By.XPath("//span[text()='Buzz']");
 
 
-        public void goToMainMenu(MainMenu mainMenu)
+        public dynamic goToMainMenu(MainMenu mainMenu)
         {
             switch (mainMenu)
             {
                 case MainMenu.Admin:
                     Console.WriteLine("TODO: Implement logic here to go to each item in navbar");
-                    break;
-
+                    Common.ClickOnElement(adminOption);
+                    return new AdminPage(driver);
                 default:
-                    break;
+                    throw new ArgumentException($"Unsupported MainMenu value: {mainMenu}");
             }
         }
 

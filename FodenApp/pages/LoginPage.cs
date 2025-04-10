@@ -22,22 +22,11 @@ namespace FodenApp.pages
         [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
         private IWebElement submitBtn;
 
-        public void validLogin(string username, string password){
+        public Navbar ValidLogin(string username, string password){
             usernameInput.SendKeys(username);
             passwordInput.SendKeys(password);
             submitBtn.Click();
-        }
-
-        public IWebElement getUsernameInput(){
-            return usernameInput;
-        }
-
-        public IWebElement getPasswordInput(){
-            return passwordInput;
-        }
-
-        public IWebElement getSubmitButton(){
-            return submitBtn;
+            return new Navbar(driver);
         }
     }
 }

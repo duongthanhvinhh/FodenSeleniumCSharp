@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using FodenApp.utilities;
 
 namespace FodenApp.pages
 {
@@ -12,21 +13,22 @@ namespace FodenApp.pages
             this.driver = driver;
             PageFactory.InitElements(driver, this);
         }
-
-        [FindsBy(How = How.XPath, Using = "//input[@name='username']")]
-        private IWebElement usernameInput;
-
-        [FindsBy(How = How.XPath, Using = "//input[@type='password']")]
-        private IWebElement passwordInput;
-
-        [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
-        private IWebElement submitBtn;
+        private By usernameInput = By.XPath("//input[@name='username']");
+        private By passwordInput = By.XPath("//input[@type='password']");
+        private By submitBtn = By.XPath("//button[@type='submit']");
 
         public Navbar ValidLogin(string username, string password){
-            usernameInput.SendKeys(username);
-            passwordInput.SendKeys(password);
-            submitBtn.Click();
+            Common.EnterText(usernameInput, username);
+            Common.EnterText(passwordInput, password);
+            Common.ClickOnElement(submitBtn);
             return new Navbar(driver);
+        }
+
+        public void InvalidLogin(string username, string password){
+            Common.EnterText(usernameInput, username);
+            Common.EnterText(passwordInput, password);
+            Common.ClickOnElement(submitBtn);
+            Common.WaitForElementVisible(usernameInput);
         }
     }
 }

@@ -31,12 +31,15 @@ namespace FodenApp.pages
 
         public dynamic goToMainMenu(MainMenu mainMenu)
         {
+            Console.WriteLine($"Go to {mainMenu} page");    
             switch (mainMenu)
             {
                 case MainMenu.Admin:
-                    Console.WriteLine("TODO: Implement logic here to go to each item in navbar");
                     Common.ClickOnElement(adminOption);
                     return new AdminPage(driver);
+                case MainMenu.Dashboard:
+                    Common.ClickOnElement(dashboardOption);
+                    return new DashboardPage(driver);
                 default:
                     throw new ArgumentException($"Unsupported MainMenu value: {mainMenu}");
             }

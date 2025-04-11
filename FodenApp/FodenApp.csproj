@@ -29,9 +29,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="testdata\" />
     <Folder Include="utilities\" />
     <Folder Include="pages\" />
     <Folder Include="tests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="testdata\testData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <Target Name="CopyCustomContent" AfterTargets="AfterBuild">

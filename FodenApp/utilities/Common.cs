@@ -13,6 +13,11 @@ namespace FodenApp.utilities
 
         static private bool acceptNextAlert = true;
 
+
+        static public JsonReader getJsonReader(string filePath){
+            return new JsonReader(filePath);
+        }
+
         static public bool IsElementPresent(By by)
         {
             try

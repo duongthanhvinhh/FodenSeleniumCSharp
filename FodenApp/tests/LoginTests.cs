@@ -12,7 +12,8 @@ namespace FodenApp.tests
 {
 
     [Parallelizable(ParallelScope.All)] // Runs all test methods in parallel
-    // [Parallelizable(ParallelScope.Self)] //
+    // [Parallelizable(ParallelScope.Self)] // Define parallelizable Self for all classes under a folder test, when run all tests under
+    // that folder, all tests in classes will be run in parallel
     public class LoginTests : DriverManager
     {
 
@@ -36,16 +37,18 @@ namespace FodenApp.tests
         [Test, TestCaseSource(nameof(AddTestDataConfig))]
         [Retry(1)]
         [Category("Smoke")]
-        public void VerifyThatNonExistUserCanNotLogin(string username, string password)
+        public void VerifyThatNonExistUserOrInvalidPasswordCanNotLogin(string username, string password)
         {
             LoginPage loginPage = new LoginPage(getDriver());
             loginPage.InvalidLogin(username, password);
+            loginPage.VerifyLoginFailed();
         }
 
         public static IEnumerable<TestCaseData> AddTestDataConfig(){
-            yield return new TestCaseData("foden", "admin123");
-            yield return new TestCaseData("Admin", "Password@01");
-            yield return new TestCaseData("foden", "Password@01");
+            JsonReader jsonReader = Common.getJsonReader("testdata/testData.json");
+            yield return new TestCaseData(jsonReader.GetValue<string>("invalid_username"), jsonReader.GetValue<string>("password"));
+            yield return new TestCaseData(jsonReader.GetValue<string>("username"), jsonReader.GetValue<string>("invalid_password"));
+            yield return new TestCaseData(jsonReader.GetValue<string>("invalid_username"), jsonReader.GetValue<string>("invalid_password"));
         }
 
     }

@@ -2,5 +2,6 @@
     "username" : "Admin",
     "password" : "admin123",
     "invalid_username" : "foden",
-    "invalid_password" : "Password@01"
+    "invalid_password" : "Password@01",
+    "products" : ["Accumulation", "Pension"]
 }
